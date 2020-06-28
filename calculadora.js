@@ -1,7 +1,8 @@
 
 //objeto calculadora
 let calculadora = {};
-calculadora.display = document.querySelector("#display"); 
+calculadora.display = document.querySelector(".display"); 
+
 //Referenciando botões
 let botaoZero = document.querySelector("#numeroZero");
 let botaoUm = document.querySelector("#numeroUm");
@@ -12,9 +13,14 @@ let botaoCinco = document.querySelector("#numeroCinco");
 let botaoSeis = document.querySelector("#numeroSeis");
 let botaoSete = document.querySelector("#numeroSete");
 let botaoOito = document.querySelector("#numeroOito");
-let botaoNOve = document.querySelector("#numeroNove");
+let botaoNove = document.querySelector("#numeroNove");
 let botaoSoma = document.querySelector("#soma");
 let botaoIgual = document.querySelector("#igual");
+let botaoMultiplica = document.querySelector("#multiplicar");
+let botaoDividi = document.querySelector("#dividir");
+let botaoSubtrai = document.querySelector("#subtrair");
+let botaoC = document.querySelector("#c");
+
 //Variavel que acumula expressões
 let acumulador = "";
 let resultado;
@@ -48,18 +54,36 @@ botaoSete.onclick = function(){
 botaoOito.onclick = function(){  
     calculadora.display.innerText +=8;
 }
-botaoNOve.onclick = function(){
+botaoNove.onclick = function(){
     calculadora.display.innerText +=9;
 }
 
-//Evento botão soma
+//Subtrair
+botaoSubtrai.onclick = function(){
+    acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
+    acumulador += " - "; //Guardando dentro do acumulador o -
+    calculadora.display.innerText = ""; //Limpando o display
+}
+//Dividir
+botaoDividi.onclick = function(){
+    acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
+    acumulador += " / "; //Guardando dentro do acumulador o /
+    calculadora.display.innerText = ""; //Limpando o display
+}
+//Multiplicar
+botaoMultiplica.onclick = function(){
+    acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
+    acumulador += " * "; //Guardando dentro do acumulador o *
+    calculadora.display.innerText = ""; //Limpando o display
+}
+
+//Somar
 botaoSoma.onclick = function() {
     acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
     acumulador += " + "; //Guardando dentro do acumulador o +
     calculadora.display.innerText = ""; //Limpando o display
  
 }
-
 //Evento do botão igual
 botaoIgual.onclick = function() {
     //TODO: checar se existe conteúdo dentro do display. pelo visto eu tenho que criar um contador né 
@@ -72,10 +96,11 @@ botaoIgual.onclick = function() {
     calculadora.display.innerText = resultado;
     // limpando o acumulador
     acumulador = "";
-   // limparDisplay();
 }
-
-function limparDisplay(){
-    
-    
+//C limpar
+botaoC.onclick = function(){
+    //colocando no display o conteúdo do acumulador
+    calculadora.display.innerText = "";
+    // limpando o acumulador
+    acumulador = "";
 }
