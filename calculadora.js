@@ -1,7 +1,8 @@
 
 //objeto calculadora
 let calculadora = {};
-calculadora.display = document.querySelector(".display"); 
+calculadora.display = document.querySelector(".display-calculo"); 
+calculadora.historico = document.querySelector(".display-historico");
 
 //Referenciando botões
 let botao = document.querySelectorAll(".btn-num");
@@ -52,6 +53,7 @@ botaoSinais[2].onclick = function(){
 //Dividir
 botaoSinais[1].onclick = function(){
     acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
+    acumulador += calculadora.historico.innerText;
     acumulador += " / "; //Guardando dentro do acumulador o /
     calculadora.display.innerText = ""; //Limpando o display
 }
@@ -67,9 +69,9 @@ botaoSinais[3].onclick = function() {
     acumulador += calculadora.display.innerText; //Guardando dentro do acumulador o valor escrito no display
     acumulador += " + "; //Guardando dentro do acumulador o +
     calculadora.display.innerText = ""; //Limpando o display
- 
+    acumulador += calculadora.historico.innerText; //Guardando no histórico 
 }
-//Iigual
+//Igual
 botaoSinais[4].onclick = function() {
     //colocando conteúdo do display no acumulador
     acumulador += calculadora.display.innerText; 
@@ -78,8 +80,10 @@ botaoSinais[4].onclick = function() {
     
     //colocando no display o conteúdo do acumulador
     calculadora.display.innerText = resultado;
+
     // limpando o acumulador
     acumulador = "";
+    
 }
 //Limpar C
 botao[12].onclick = function(){
@@ -91,4 +95,10 @@ botao[12].onclick = function(){
 //Alterar sinal do número
 botao[9].onclick = function(){
     console.log("clickado");
+    //Alterar o sinal do próximo número
+    calculadora.display.innerText = calculadora.display.innerText * (-1);
+}
+//Acrescentar ponto
+botao[11].onclick = function(){
+    calculadora.display.innerText = calculadora.display.innerText + ".";
 }
